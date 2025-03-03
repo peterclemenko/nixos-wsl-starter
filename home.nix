@@ -18,6 +18,8 @@
     fx
     git
     git-crypt
+    code-server
+    kubectl
     htop
     jq
     killall
