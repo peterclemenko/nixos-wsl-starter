@@ -82,7 +82,7 @@
     in {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
-      packages.${system}.default = (kubenix.evalModules.${system} {
+      packages.x86_64-linux.default = (kubenix.evalModules.x86_64-linux {
         module = { kubenix, ... }: {
           imports = [ kubenix.modules.k8s ];
           kubernetes.resources.pods.example.spec.containers.nginx.image = "nginx";
