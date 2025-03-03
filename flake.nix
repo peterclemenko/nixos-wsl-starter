@@ -15,6 +15,8 @@
   inputs.nix-index-database.url = "github:Mic92/nix-index-database";
   inputs.nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
+  inputs.kubenix.url = "github:hall/kubenix";
+
   inputs.jeezyvim.url = "github:LGUG2Z/JeezyVim";
 
   outputs = inputs:
@@ -79,6 +81,14 @@
         };
     in {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+
+      packages.${system}.default = (kubenix.evalModules.${system} {
+        module = { kubenix, ... }: {
+          imports = [ kubenix.modules.k8s ];
+          kubernetes.resources.pods.example.spec.containers.nginx.image = "nginx";
+        };
+      }).config.kubernetes.result;
+
 
       nixosConfigurations.nixos = mkNixosConfiguration {
         hostname = "nixos";
