@@ -22,7 +22,7 @@
   security.sudo.wheelNeedsPassword = false;
 
   # FIXME: uncomment the next line to enable SSH
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   users.users.${username} = {
     isNormalUser = true;
@@ -47,7 +47,7 @@
     ];
   };
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "24.11";
 
   wsl = {
     enable = true;
@@ -58,7 +58,7 @@
     startMenuLaunchers = true;
 
     # Enable integration with Docker Desktop (needs to be installed)
-    docker-desktop.enable = false;
+    docker-desktop.enable = true;
   };
 
   virtualisation.docker = {
